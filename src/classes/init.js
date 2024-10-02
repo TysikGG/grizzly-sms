@@ -41,9 +41,11 @@ class GrizzlyInit {
                 serviceCode: serviceCode,
                 countryCode: code
             });
-            if ((!data || !data.cost) && retryErrors) return getInfo(code);
-            infoList.push(data)
-            return data;
+            if ((!data || !data?.cost) && retryErrors) return getInfo(code);
+            else if (data && data?.cost) {
+                infoList.push(data)
+                return data;
+            }
         };
 
         async function delayedIterations(codes, delay, obj) {
@@ -55,7 +57,7 @@ class GrizzlyInit {
         
         await delayedIterations(countryCodes, parseDelay || 200, this);
 
-        sortedInfoList = infoList.sort((a, b) => a.cost - b.cost);
+        sortedInfoList = infoList.sort((a, b) => a?.cost - b?.cost);
         console.log(sortedInfoList)
         if (saveFilePath) writeFileSync(saveFilePath, JSON.stringify(sortedInfoList, null, 2))
     };
