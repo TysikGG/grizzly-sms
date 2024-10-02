@@ -12,14 +12,12 @@ async function APIRequest(action, params) {
     };
     urlData += `action=${action}`;
 
-    const req = await axios.get(domain + urlData);
-    
-    if (req.data) {
-        const balance = req.data.split(":")[1]
-        console.log(Number(balance))
-        return Number(balance)
-    } else {
-        return null
+    try {
+        const req = await axios.get(domain + urlData);
+        return req.data
+    } catch (e) {
+        console.log(e.message)
+        return {error: true, message: e.message};
     }
 }
 

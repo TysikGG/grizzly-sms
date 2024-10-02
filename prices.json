@@ -1,0 +1,27 @@
+[
+  {
+    "count": 606,
+    "cost": 1.3,
+    "retry": 0
+  },
+  {
+    "count": 2,
+    "cost": 9.5,
+    "retry": 0
+  },
+  {
+    "count": 1,
+    "cost": 16.34,
+    "retry": 0
+  },
+  {
+    "count": 4,
+    "cost": 18.5,
+    "retry": 0
+  },
+  {
+    "count": 4,
+    "cost": 47,
+    "retry": 0
+  }
+]
