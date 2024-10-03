@@ -1,6 +1,6 @@
 const { readFileSync } = require("fs");
 
-const codes = readFileSync("./src/data/countryCodes.txt", "utf-8");
+const codes = readFileSync(path.join(__dirname, "..", "data", "countryCodes.txt"), "utf-8");
 
 function getCodesList() {
     const codesData = [];

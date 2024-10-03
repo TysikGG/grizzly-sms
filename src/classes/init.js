@@ -90,8 +90,6 @@ class GrizzlyInit {
             id: splittedData[1]
         };
     };
-
-    async 
 };
 
 module.exports = {
