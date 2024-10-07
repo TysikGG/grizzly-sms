@@ -37,6 +37,6 @@ const serviceCode = "tg"; // Код сервиса. Можно найти на h
 const countryCode = "1"; // Код страны. Можно найти на https://grizzlysms.com/docs
 
 const balance = await grizzly.getInfo({serviceCode: serviceCode, countryCode: countryCode});
-console.log(balance) // Выведет объект формата { count: X, cost: Y, retry: 0 }, где X: количество доступных номеров, Y: цена за 1 номер.
+console.log(balance); // Выведет объект формата { count: X, cost: Y, retry: 0 }, где X: количество доступных номеров, Y: цена за 1 номер.
 ```
 ## Автор: Tysik
