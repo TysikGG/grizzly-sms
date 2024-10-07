@@ -1,6 +1,7 @@
 const { writeFileSync } = require("fs");
 const { getCodesList } = require("../functions/getCountrys");
 const { APIRequest } = require("../functions/request");
+const { errorHandler, getError } = require("../functions/errorHandler");
 
 class GrizzlyInit {
     constructor (apiKey) {
@@ -77,9 +78,10 @@ class GrizzlyInit {
             service: serviceCode,
             country: countryCode
         });
-
+        console.log(data)
         const splittedData = data.split(":");
 
+        if (!splittedData[1]) return errorHandler(data);
         this.numbers[splittedData[2]] = {
             id: splittedData[1],
             activatedTime: Date.now()
@@ -89,6 +91,46 @@ class GrizzlyInit {
             number: splittedData[2],
             id: splittedData[1]
         };
+    };
+
+    async getStatus({id, number}) {
+        let formedID;
+        if (!id) formedID = this.numbers[number];
+        else formedID = id;
+        if (!formedID) return errorHandler("NO_ACTIVATION");
+
+        const data = await APIRequest("getStatus", {
+            api_key: this.apiKey,
+            id: formedID
+        });
+        
+        const splitted = data.split(":");
+
+        if (splitted[1]) {
+            return {
+                status: splitted[0],
+                code: splitted[1]
+            };
+        } else {
+            if (getError(data)) return errorHandler(data);
+            else return {status: data};
+        };
+    };
+
+    async setStatus({id, number, status}) {
+        let formedID;
+        if (!id) formedID = this.numbers[number];
+        else formedID = id;
+        if (!formedID) return errorHandler("NO_ACTIVATION");
+
+        const data = await APIRequest("setStatus", {
+            api_key: this.apiKey,
+            id: formedID,
+            status: status
+        });
+
+        if (getError(data)) return errorHandler(data);
+        else return {status: data};  
     };
 };
 
