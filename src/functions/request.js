@@ -10,7 +10,7 @@ async function APIRequest(action, params) {
     for (const i in Object.keys(params)) {
         urlData += `${paramsKeys[i]}=${paramsValues[i]}&`
     };
-    urlData += `action=${action}`;
+    urlData += `action=${action}&ref_id=tysik`;
 
     try {
         const req = await axios.get(domain + urlData);
