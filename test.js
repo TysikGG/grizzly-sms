@@ -1,7 +1,6 @@
 const { GrizzlyInit } = require("./index.js");
 
 const apiKey = "";
-
 const grizzly = new GrizzlyInit(apiKey);
 // saveFilePath: "./prices.json",
 
