@@ -19,7 +19,7 @@ npm i grizzly-sms
 ## Инициализация
 ```js
 const { GrizzlyInit } = require("grizzly-sms"); // Подключение библиотеки
-const apiKey = process.env.API_KEY || "6efe3831c1abfeb968ddeb6c4c909bd1"; // Ваш API-ключ (можно получить на https://grizzlysms.com/profile/settings) 
+const apiKey = process.env.API_KEY || ""; // Ваш API-ключ (можно получить на https://grizzlysms.com/profile/settings)
 const grizzly = new GrizzlyInit(apiKey); // Инициализация библиотеки
 ```
 
