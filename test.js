@@ -16,6 +16,7 @@ const grizzly = new GrizzlyInit(apiKey);
 console.log(balance) */
 
 
+/*
 const number = grizzly.getNumber({
     countryCode: require("./prices.json")[2].code,
     serviceCode: "ds"
@@ -27,4 +28,10 @@ const number = grizzly.getNumber({
         console.log(res)
     })
 })
+*/
+
+(async () => {
+    const balance = await grizzly.getInfo({serviceCode: "ds", countryCode: "151"});
+    console.log(balance)
+})()
 

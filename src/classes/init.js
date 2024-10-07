@@ -17,13 +17,19 @@ class GrizzlyInit {
         return balance;
     }
 
+    /**
+     * Возвращает информацию о номере определённой страны для определённого сервиса.
+     * 
+     * @param {{serviceCode: String, countryCode: String}} serviceCode входные параметры.
+     * @return {{ count: Number, cost: Number, retry: Number}} Возвращает объект с данными о номерах.
+     */
     async getInfo({serviceCode, countryCode}) {
         const data = await APIRequest("getPrices", {
             api_key: this.apiKey,
             service: serviceCode,
             country: countryCode
         });
-        if (!data[countryCode]) return null;
+        if (!data[countryCode]) return errorHandler(data);
         if (data.error) return data;
 
         const formattedData = data[countryCode][serviceCode];
